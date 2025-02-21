@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard de Gestão de Bens{% endblock %}
+
+{% block content %}
+  <div class="container">
+      <div>
+          <h1>Dashboard de Gestão de Bens</h1>
+      </div>
+
+      <!-- Gráfico 1: Quantidade de Bens por Categoria -->
+      <div class="graph-container">
+          <h2>Quantidade de Bens por Categoria</h2>
+          {{ graph_category_html|safe }}
+      </div>
+
+      <!-- Gráfico 2: Distribuição de Bens por Departamento -->
+      <div class="graph-container">
+          <h2>Distribuição de Bens por Departamento</h2>
+          {{ graph_department_html|safe }}
+      </div>
+
+      <!-- Gráfico 3: Valor Total de Bens por Categoria -->
+      <div class="graph-container">
+          <h2>Valor Total de Bens por Categoria</h2>
+          {{ graph_value_category_html|safe }}
+      </div>
+
+      <!-- Gráfico 4: Movimentações de Bens ao Longo do Tempo -->
+      <div class="graph-container">
+          <h2>Movimentações de Bens ao Longo do Tempo</h2>
+          {{ graph_movements_html|safe }}
+      </div>
+
+      <!-- Gráfico 5: Quantidade de Bens por Fornecedor -->
+      <div class="graph-container">
+          <h2>Quantidade de Bens por Fornecedor</h2>
+          {{ graph_supplier_html|safe }}
+      </div>
+
+      <!-- Gráfico 6: Movimentações por Departamento -->
+      <div class="graph-container">
+          <h2>Movimentações por Departamento</h2>
+          {{ graph_movements_dept_html|safe }}
+      </div>
+  </div>
+{% endblock %}
