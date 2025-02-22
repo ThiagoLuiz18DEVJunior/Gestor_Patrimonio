@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de {{ model }}{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-column align-items-start mb-3">
+    <!-- Título da lista -->
+    <h1 class="mb-3">Lista de {{ model }}</h1>
+
+    <a href="{% url 'dynamic_create' model=model_class %}" class="btn btn-success mb-3">
+      Criar Novo {{ model }}
+    </a>
+ 
+  
+  <ul class="list-group">
+    {% for object in object_list %}
+      <li class="list-group-item d-flex justify-content-between align-items-center mb-2">
+        <span class="me-3">{{ object }}</span> <!-- Item da lista -->
+        <div>
+          <a href="{% url 'dynamic_update' model=model_class pk=object.pk %}" class="btn btn-primary btn-sm me-2" role="button">
+            Editar
+          </a>
+
+          <a href="{% url 'dynamic_delete' model=model_class pk=object.pk %}" class="btn btn-danger btn-sm" role="button" onclick="return confirm('Tem certeza de que deseja excluir este item?')">
+            Deletar
+          </a>
+        </div>
+      </li>
+    {% empty %}
+      <li class="list-group-item">Nenhum {{ model }} encontrado.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

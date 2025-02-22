@@ -6,6 +6,8 @@
   <title>{% block title %}Minha Aplicação{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.17.0/dist/plotly.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Adicionando os ícones do Bootstrap -->
+  
   <style>
       body {
           font-family: Arial, sans-serif;
@@ -31,6 +33,10 @@
           margin-bottom: 30px;
       }
 
+      h2 {
+        font-size: 20px;
+      }
+
       .graph-container iframe {
           width: 100%;
           height: 500px;
@@ -43,76 +49,70 @@
           }
       }
   </style>
-</head>
-<body>
-  <header>
-        <div class="px-3 py-2 text-bg-dark border-bottom">
-          <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-    
-              <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                <li>
-                  <a href="#" class="nav-link text-secondary">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link text-white">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link text-white">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
-                    Orders
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link text-white">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="nav-link text-white">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
-                    Customers
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-    
-        <div class="px-3 py-2 border-bottom mb-3">
-          <div class="container d-flex flex-wrap justify-content-center">
-            <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-              <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
-    
-            <div class="text-end">
-              <button type="button" class="btn btn-light text-dark me-2">Login</button>
-              <button type="button" class="btn btn-primary">Sign-up</button>
-            </div>
-          </div>
-        </div>
-  </header>
 
-  <div class="container">
-    {% block content %}
-    <!-- Aqui o conteúdo específico será injetado -->
-    {% endblock %}
+  {% block extra_styles %}{% endblock %}
+</head>
+<body class="bg-dark {% block body_class %}{% endblock %}">
+  <header class="bg-primary shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo ou título -->
+            <a class="navbar-brand" href="{% url 'dashboard' %}">
+                <i class="bi bi-house-door me-2"></i> Property Manager
+            </a>
+
+            <!-- Botão para menu em dispositivos móveis -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links de navegação -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">
+                            <i class="bi bi-house-door-fill me-2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dynamic_list' model='category' %}">
+                            <i class="bi bi-list-check me-2"></i> Categoria
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dynamic_list' model='department' %}">
+                            <i class="bi bi-building me-2"></i> Departamento
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dynamic_list' model='supplier' %}">
+                            <i class="bi bi-person-badge me-2"></i> Fornecedor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dynamic_list' model='asset' %}">
+                            <i class="bi bi-briefcase-fill me-2"></i> Ativo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dynamic_list' model='movement' %}">
+                            <i class="bi bi-arrow-repeat me-2"></i> Movimento
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+  <div class="container text-white">
+    {% block content %}{% endblock %}
   </div>
 
   <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Property Manager. Todos os direitos reservados.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-  

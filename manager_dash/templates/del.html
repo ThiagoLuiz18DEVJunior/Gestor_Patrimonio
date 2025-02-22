@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Deletar {{ model|capfirst }}{% endblock %}
+
+{% block content %}
+<div>
+<h1>Você tem certeza que deseja deletar este {{ model|capfirst }}?</h1>
+
+<p><strong>{{ object }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, deletar</button>
+</form>
+
+<a href="{% url 'dynamic_list' model=model %}" class="btn btn-secondary mt-3">Voltar para a lista</a>
+</div>
+{% endblock %}

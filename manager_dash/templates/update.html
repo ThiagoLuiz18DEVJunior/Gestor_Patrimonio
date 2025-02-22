@@ -1,10 +1,16 @@
-{% load base.html %}
-<h1>Atualizar {{ model_name|title }}</h1>
+{% extends 'base.html' %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Atualizar</button>
-</form>
+{% block title %}Atualizar {{ model_name|title }}{% endblock %}
 
-<a href="{% url model_name+'_list' %}">Cancelar</a>
+{% block content %}
+<div>
+  <h1>Atualizar {{ model_translation }}</h1> 
+  <a href="{% url 'dynamic_list' model=model_name %}" class="btn btn-secondary mb-3">Cancelar</a>
+
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary mt-3">Atualizar</button>
+  </form>
+</div>
+{% endblock %}

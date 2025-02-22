@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Criar Novo {{ model|capfirst }}{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Criar Novo {{ model|capfirst }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>
+{% endblock %}

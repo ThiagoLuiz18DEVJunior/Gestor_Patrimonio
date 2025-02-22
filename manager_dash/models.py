@@ -38,6 +38,7 @@ class Asset(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True, blank=True)
+    rfid_tag = models.CharField(max_length=50, unique=True, blank=True, null=True)  
 
     def __str__(self):
         return self.name
