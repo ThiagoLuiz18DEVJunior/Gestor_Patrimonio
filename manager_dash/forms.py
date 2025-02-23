@@ -88,7 +88,7 @@ class SupplierForm(forms.ModelForm):
 class AssetForm(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = ['name', 'description', 'value', 'purchase_date', 'category', 'department', 'supplier']
+        fields = ['name', 'description', 'value', 'purchase_date', 'category', 'department', 'supplier', 'rfid_tag']
         widgets = {
             'description': forms.Textarea(attrs={
                 'rows': 3, 
@@ -107,6 +107,10 @@ class AssetForm(forms.ModelForm):
                 'placeholder': 'Nome do bem', 
                 'class': 'form-control'
             }),
+             'rfid_tag': forms.TextInput(attrs={
+                'placeholder': 'RFID', 
+                'class': 'form-control'
+            }),
         }
 
     def __init__(self, *args, **kwargs):
@@ -118,6 +122,7 @@ class AssetForm(forms.ModelForm):
         self.fields['category'].label = "Categoria"
         self.fields['department'].label = "Departamento"
         self.fields['supplier'].label = "Fornecedor"
+        self.fields['rfid_tag'].label = "Tag RFID"
 
 
 # 5. Movement Form (Formulário para Movimentações)
